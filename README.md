@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Patra
 
-## Getting Started
+Understand any official letter in 30 seconds. Plain-language explanations of tax notices, bank letters, legal notices and forms, in English or Hindi. Photos and PDFs are read on the user's device, and private numbers are hidden before anything is sent.
 
-First, run the development server:
+Specs live in `docs/`: `PATRA_MASTER_SPEC.md` and `PATRA_BRAND_UI_TRUST_SECURITY_SPEC.md`.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install                    # also downloads the OCR assets into public/ocr
+cp .env.example .env.local      # works as-is in demo mode (AI_PROVIDER=mock)
+pnpm dev                        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Real explanations (free): create a key in Google AI Studio, then in `.env.local`:
+```
+AI_PROVIDER=gemini
+GEMINI_API_KEY=your-key
+AI_MODEL_ID=<a current Flash or Flash-Lite model id from AI Studio>
+```
+Free-tier terms may let the provider use and review the text it receives. Use only synthetic letters while developing.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
+`pnpm test` · `pnpm typecheck` · `pnpm lint` · `pnpm build` · `pnpm setup:ocr`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+OCR assets (about 16 MB: worker, wasm, English and Hindi language data, PDF worker) are not committed. `pnpm install` copies them into `public/ocr`; run `pnpm setup:ocr` if that step was skipped.
 
-## Learn More
+## Status
+Done: Next.js 15 + TypeScript strict; design tokens (light, dark, high contrast, 3 text sizes); English and Hindi UI; redaction (Aadhaar with Verhoeff, cards with Luhn, PAN, phone, email, UPI, account, DOB, IDs) with user controls; explain API (Zod validation, quote verification, date math, repair retry, rate limit, daily cap, origin check, no content logging); result card with postmark stamp; on-device photo and PDF reading (tesseract.js eng+hin, pdf.js, scanned-PDF fallback, EXIF stripped, self-hosted assets with their own CSP); legal and trust pages marked as drafts (privacy, terms, cookies, refunds, accessibility, about, contact, data requests); nonce CSP and security headers; CI; 17 tests.
 
-To learn more about Next.js, take a look at the following resources:
+Not yet: follow-up chat, draft reply, read aloud, .ics and PDF export, next-intl routing, Upstash rate limiting, golden evaluation set, Playwright and axe tests, screen-reader and native-Hindi review, Hindi legal pages, lawyer review of the legal pages.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Before launch
+Fill every `TODO(owner)` in `lib/siteConfig.ts`. Have a lawyer review the legal pages. Run the checklist in section 23 of the master spec.
