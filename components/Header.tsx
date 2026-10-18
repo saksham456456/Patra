@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { LogoMark } from "./Logo";
 import { useSettings } from "./Providers";
+import { siteConfig } from "@/lib/siteConfig";
 
 export function Header() {
   const { lang, setLang, size, setSize, theme, setTheme, t } = useSettings();
@@ -47,6 +48,17 @@ export function Footer() {
     <footer className="site-footer">
       <div className="wrap">
         <p>{t("footer_ind")}</p>
+        <nav className="footer-links" aria-label="Legal and contact">
+          <Link href="/about">About</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
+          <Link href="/cookies">Cookies</Link>
+          <Link href="/refunds">Refunds</Link>
+          <Link href="/accessibility">Accessibility</Link>
+          <Link href="/data-request">Data requests</Link>
+          <Link href="/contact">Contact</Link>
+        </nav>
+        <p className="hint">{siteConfig.name}, run by {siteConfig.operatorName}</p>
       </div>
     </footer>
   );

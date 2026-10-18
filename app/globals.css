@@ -160,3 +160,14 @@ dl { display: grid; gap: .6rem; } dt { font-weight: 700; } dd { margin: 0; color
 .file-btn { cursor: pointer; position: relative; }
 .file-btn:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
 .file-btn input:disabled + * { opacity: .5; }
+
+/* ---------- Legal pages ---------- */
+.legal { max-width: 760px; }
+.legal h2 { font-size: 1.3rem; margin-top: 2rem; }
+.legal ul, .legal ol { max-width: var(--measure); padding-left: 1.3rem; } .legal li { margin-bottom: .5rem; }
+.short { background: var(--paper-2); border-left: 5px solid var(--ink); padding: .9rem 1.1rem; margin: 1.2rem 0; max-width: var(--measure); }
+.tbl { border-collapse: collapse; width: 100%; max-width: var(--measure); margin-bottom: 1rem; font-size: .95rem; }
+.tbl th, .tbl td { border: 1px solid var(--paper-3); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+.tbl th { background: var(--paper-2); }
+.footer-links { display: flex; flex-wrap: wrap; gap: .4rem 1.3rem; margin: 1rem 0; }
+.footer-links a { color: var(--ink-2); padding: .3rem 0; }

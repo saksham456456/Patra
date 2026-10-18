@@ -8,5 +8,8 @@ export const siteConfig = {
   operatorAddress: "TODO(owner): contact address",
   contactEmail: "TODO(owner): hello@your-domain.in",
   grievanceOfficer: { name: "TODO(owner)", email: "TODO(owner): grievance@your-domain.in", responseTime: "7 days" },
+  hosting: "TODO(owner): hosting provider (for example Vercel) and region",
+  aiProvider: "Google (Gemini API, free tier)",
+  legal: { version: "0.1 (draft)", lastUpdated: "18 October 2026", lawyerReviewed: false },
   independence: "Patra is an independent tool. It is not affiliated with any government department, bank, insurer or other sender of letters.",
 } as const;
